@@ -1,0 +1,19 @@
+.page,
+.page header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page main {
+  display: flex;
+  justify-content: center;
+}
+
+.page form {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
