@@ -3,7 +3,6 @@
 import styles from "./page.module.css";
 import { Movies } from "./components/Movies";
 import { useMovies } from "./hooks/useMovies";
-import { useEffect, useState } from "react";
 import { useSearch } from "./hooks/useSearch";
 
 export default function Home() {
@@ -37,7 +36,7 @@ export default function Home() {
       </header>
 
       <main>
-        <Movies movies={mappedMovies} className={styles.movies} />
+        <Movies movies={mappedMovies} />
       </main>
     </div>
   );

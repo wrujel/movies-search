@@ -4,12 +4,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  width: 100%;
+}
+
+.page {
+  gap: 2rem;
 }
 
 .page main {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .page form {
