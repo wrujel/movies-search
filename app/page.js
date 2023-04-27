@@ -7,7 +7,7 @@ import { useSearch } from "./hooks/useSearch";
 
 export default function Home() {
   const { query, setQuery, error } = useSearch();
-  const { movies, getMovies } = useMovies({ query });
+  const { movies, loading, getMovies } = useMovies({ query });
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +37,11 @@ export default function Home() {
       </header>
 
       <main>
-        <Movies movies={movies} />
+        {loading ? (
+          <p className={styles.loading}>Loading...</p>
+        ) : (
+          <Movies movies={movies} />
+        )}
       </main>
     </div>
   );
