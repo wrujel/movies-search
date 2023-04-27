@@ -11,8 +11,10 @@ function ListOfMovies ({movies}) {
           <Image
             src={movie.poster}
             alt={movie.title}
-            width={200}
-            height={200}
+            width={0}
+            height={0}
+            sizes="100vw"
+            className={styles.movieImage}
           />
         </li>
       ))}

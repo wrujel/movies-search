@@ -19,7 +19,9 @@
   margin: 0;
 }
 
-.movie img {
+.movieImage {
   border-radius: 8px;
   margin-top: 16px;
+  width: 100%;
+  height: auto;
 }
