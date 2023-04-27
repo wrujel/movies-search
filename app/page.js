@@ -1,30 +1,43 @@
+"use client";
+
 import styles from "./page.module.css";
-import responseMovies from "./mocks/search-with-results.json";
-import withoutResults from "./mocks/search-without-results.json";
 import { Movies } from "./components/Movies";
+import { useMovies } from "./hooks/useMovies";
+import { useEffect, useState } from "react";
+import { useSearch } from "./hooks/useSearch";
 
 export default function Home() {
-  const movies = responseMovies.Search;
+  const { movies: mappedMovies } = useMovies();
+  const { query, setQuery, error } = useSearch();
 
-  const mappedMovies = movies?.map((movie) => ({
-    id: movie.imdbID,
-    title: movie.Title,
-    year: movie.Year,
-    poster: movie.Poster,
-  }));
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const handleChange = (event) => {
+    const query = event.target.value;
+    if (query.startsWith(" ")) return;
+    setQuery(event.target.value);
+  };
 
   return (
     <div className={styles.page}>
       <header>
         <h1>Movie Search</h1>
-        <form className="form">
-          <input type="text" placeholder="Search for movies and TV shows" />
+        <form className="form" onSubmit={handleSubmit}>
+          <input
+            onChange={handleChange}
+            value={query}
+            type="text"
+            placeholder="Search for movies"
+          />
           <button type="submit">Search</button>
         </form>
+        {error && <p className={styles.error}>{error}</p>}
       </header>
 
       <main>
-        <Movies movies={mappedMovies} />
+        <Movies movies={mappedMovies} className={styles.movies} />
       </main>
     </div>
   );
