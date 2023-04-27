@@ -6,11 +6,12 @@ import { useMovies } from "./hooks/useMovies";
 import { useSearch } from "./hooks/useSearch";
 
 export default function Home() {
-  const { movies: mappedMovies } = useMovies();
   const { query, setQuery, error } = useSearch();
+  const { movies, getMovies } = useMovies({ query });
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    getMovies();
   };
 
   const handleChange = (event) => {
@@ -36,7 +37,7 @@ export default function Home() {
       </header>
 
       <main>
-        <Movies movies={mappedMovies} />
+        <Movies movies={movies} />
       </main>
     </div>
   );
