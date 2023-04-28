@@ -8,7 +8,8 @@ function ListOfMovies ({movies}) {
         <li className={styles.movie} key={movie.id}>
           <h3>{movie.title}</h3>
           <p>{movie.year}</p>
-          <Image
+          {movie.poster !== null 
+          ? <Image
             src={movie.poster}
             alt={movie.title}
             width={0}
@@ -16,6 +17,7 @@ function ListOfMovies ({movies}) {
             sizes="100vw"
             className={styles.movieImage}
           />
+          : <p>No image available</p>}
         </li>
       ))}
     </ul>

@@ -14,7 +14,7 @@ export const searchMovies = async ({ query }) => {
       id: movie.imdbID,
       title: movie.Title,
       year: movie.Year,
-      poster: movie.Poster,
+      poster: movie.Poster === "N/A" ? null : movie.Poster,
     }));
   } catch (error) {
     throw new Error("Error fetching movies");
