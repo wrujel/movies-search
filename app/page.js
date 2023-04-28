@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import { Movies } from "./components/Movies";
 import { useMovies } from "./hooks/useMovies";
 import { useSearch } from "./hooks/useSearch";
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import debounce from "just-debounce-it";
 
 export default function Home() {
@@ -16,11 +16,11 @@ export default function Home() {
     sort,
   });
 
+  // The debouncedGetMovies function will only be called after 500ms of no change to the query.
   const debouncedGetMovies = useMemo(
     () =>
       debounce((query) => {
         if (query) {
-          console.log(query);
           getMovies({ query });
         }
       }, 500),
@@ -32,7 +32,7 @@ export default function Home() {
     getMovies({ query });
   };
 
-  const handleSort = (event) => {
+  const handleSort = () => {
     setSort(!sort);
   };
 
