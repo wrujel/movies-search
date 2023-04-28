@@ -4,20 +4,43 @@ import styles from "./page.module.css";
 import { Movies } from "./components/Movies";
 import { useMovies } from "./hooks/useMovies";
 import { useSearch } from "./hooks/useSearch";
+import { useCallback, useMemo, useState } from "react";
+import debounce from "just-debounce-it";
 
 export default function Home() {
-  const { query, setQuery, error } = useSearch();
-  const { movies, loading, getMovies } = useMovies({ query });
+  const [sort, setSort] = useState(false);
+
+  const { query, setQuery, errorQuery } = useSearch();
+  const { movies, loading, getMovies } = useMovies({
+    query,
+    sort,
+  });
+
+  const debouncedGetMovies = useMemo(
+    () =>
+      debounce((query) => {
+        if (query) {
+          console.log(query);
+          getMovies({ query });
+        }
+      }, 500),
+    [getMovies]
+  );
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    getMovies();
+    getMovies({ query });
+  };
+
+  const handleSort = (event) => {
+    setSort(!sort);
   };
 
   const handleChange = (event) => {
-    const query = event.target.value;
-    if (query.startsWith(" ")) return;
-    setQuery(event.target.value);
+    const newQuery = event.target.value;
+    if (newQuery.startsWith(" ")) return;
+    setQuery(newQuery);
+    debouncedGetMovies(newQuery);
   };
 
   return (
@@ -32,8 +55,16 @@ export default function Home() {
             placeholder="Search for movies"
           />
           <button type="submit">Search</button>
+          <input
+            type="checkbox"
+            id="sort"
+            name="sort"
+            value="sort"
+            onClick={handleSort}
+          />
+          Sort by year
         </form>
-        {error && <p className={styles.error}>{error}</p>}
+        {errorQuery && <p className={styles.error}>{errorQuery}</p>}
       </header>
 
       <main>
