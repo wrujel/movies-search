@@ -25,7 +25,7 @@
   </a>
   <a href="https://vercel.com/">
     <img
-      src="https://img.shields.io/badge/vercel-Deployed-blue.svg?style=flat&logo=vercel"
+      src="https://img.shields.io/badge/vercel-Deployed-success.svg?style=flat&logo=vercel"
       alt="Deployed on Vercel"
     />
   </a>
