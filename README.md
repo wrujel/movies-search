@@ -7,13 +7,13 @@ This app will allow you to search for movies and tv shows. It uses [OMDb API](ht
 
 ## Features
 
-✅ Has a form with a search input and a submit button.
-✅ Show a list of movies with title, year and poster.
-✅ Grid responsive layout.
-✅ Fetch data from [OMDb API](https://www.omdbapi.com).
-✅ Prevent same search from being made twice.
-✅ Search is made while typing.
-✅ Has a debounce function to prevent too many requests.
+- [x] Has a form with a search input and a submit button.
+- [x] Show a list of movies with title, year and poster.
+- [x] Grid responsive layout.
+- [x] Fetch data from [OMDb API](https://www.omdbapi.com).
+- [x] Prevent same search from being made twice.
+- [x] Search is made while typing.
+- [x] Has a debounce function to prevent too many requests.
 
 ## Tech Stack
 
