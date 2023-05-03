@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { searchMovies } from "../services/searchMovies";
+import toast from "react-hot-toast";
 
 export function useMovies({ query, sort }) {
   const [movies, setMovies] = useState([]);
@@ -16,8 +17,10 @@ export function useMovies({ query, sort }) {
       previousSearch.current = query;
       const response = await searchMovies({ query });
       setMovies(response);
+      return response;
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
+      return [];
     } finally {
       setLoading(false);
     }

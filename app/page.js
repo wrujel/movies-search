@@ -6,11 +6,12 @@ import { useMovies } from "./hooks/useMovies";
 import { useSearch } from "./hooks/useSearch";
 import { useMemo, useState } from "react";
 import debounce from "just-debounce-it";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const [sort, setSort] = useState(false);
 
-  const { query, setQuery, errorQuery } = useSearch();
+  const { query, setQuery, error } = useSearch();
   const { movies, loading, getMovies } = useMovies({
     query,
     sort,
@@ -19,9 +20,11 @@ export default function Home() {
   // The debouncedGetMovies function will only be called after 500ms of no change to the query.
   const debouncedGetMovies = useMemo(
     () =>
-      debounce((query) => {
+      debounce(async (query) => {
         if (query) {
-          getMovies({ query });
+          const data = await getMovies({ query });
+          if (data === undefined) toast.error("No movies found");
+          else toast.success(`Found ${data.length} movies for ${query}`);
         }
       }, 500),
     [getMovies]
@@ -45,6 +48,7 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
+      <Toaster position="top-right" reverseOrder={false} />
       <header>
         <h1>Movie Search</h1>
         <form className="form" onSubmit={handleSubmit}>
@@ -64,7 +68,7 @@ export default function Home() {
           />
           Sort by year
         </form>
-        {errorQuery && <p className={styles.error}>{errorQuery}</p>}
+        {error && <p className={styles.error}>{error}</p>}
       </header>
 
       <main>
