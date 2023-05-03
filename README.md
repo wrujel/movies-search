@@ -59,6 +59,12 @@
       alt="Just-Debounce-It version" 
     />
   </a>
+  <a href="https://react-hot-toast.com/">
+    <img 
+      src="https://img.shields.io/badge/React--Hot--Toast-1.0.0+-blue.svg?style=flat&logo=npm" 
+      alt="React Hot Toast version" 
+    />
+  </a>
 </div>
 <br />
 
@@ -73,6 +79,7 @@ This app will allow you to search for movies and tv shows. It uses [OMDb API](ht
 - [x] Prevent same search from being made twice.
 - [x] Search is made while typing.
 - [x] Has a debounce function to prevent too many requests.
+- [x] Use React Hot Toast to show notification messages.
 
 ## Tech Stack
 
@@ -82,6 +89,7 @@ This app will allow you to search for movies and tv shows. It uses [OMDb API](ht
 - JavaScript
 - [Water.css](https://watercss.kognise.dev/)
 - [Just-Debounce-It](https://github.com/angus-c/just)
+- [React Hot Toast](https://react-hot-toast.com/)
 
 ## Getting Started
 
