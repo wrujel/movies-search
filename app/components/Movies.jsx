@@ -1,24 +1,11 @@
-import Image from "next/image";
 import styles from "./Movies.module.css";
+import ImageContainer from "./ImageContainer";
 
 function ListOfMovies ({movies}) {
   return (
     <ul className={styles.movies} >
       {movies.map((movie) => (
-        <li className={styles.movie} key={movie.id}>
-          <h3>{movie.title}</h3>
-          <p>{movie.year}</p>
-          {movie.poster !== null 
-          ? <Image
-            src={movie.poster}
-            alt={movie.title}
-            width={0}
-            height={0}
-            sizes="100vw"
-            className={styles.movieImage}
-          />
-          : <p>No image available</p>}
-        </li>
+        <ImageContainer movie={movie} key={movie.id} />
       ))}
     </ul>
   )
