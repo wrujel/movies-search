@@ -32,7 +32,6 @@ export default function Home() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    getMovies({ query });
   };
 
   const handleSort = () => {
@@ -50,23 +49,35 @@ export default function Home() {
     <div className={styles.page}>
       <Toaster position="top-right" reverseOrder={false} />
       <header>
-        <h1>Movie Search</h1>
+        <h1 className="mb-6">Movie Search</h1>
         <form className="form" onSubmit={handleSubmit}>
-          <input
-            onChange={handleChange}
-            value={query}
-            type="text"
-            placeholder="Search for movies"
-          />
-          <button type="submit">Search</button>
-          <input
-            type="checkbox"
-            id="sort"
-            name="sort"
-            value="sort"
-            onClick={handleSort}
-          />
-          Sort by year
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-3">
+            <div className="flex gap-3">
+              <input
+                onChange={handleChange}
+                value={query}
+                type="text"
+                className="m-0"
+                placeholder="Search for movies"
+              />
+              <button
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 m-0"
+                type="submit"
+              >
+                Search
+              </button>
+            </div>
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                name="sort"
+                value="sort"
+                className="m-0 sm:ml-4"
+                onClick={handleSort}
+              />
+              Sort by year
+            </div>
+          </div>
         </form>
         {error && <p className={styles.error}>{error}</p>}
       </header>
