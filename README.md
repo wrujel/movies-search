@@ -65,6 +65,12 @@
       alt="React Hot Toast version" 
     />
   </a>
+  <a href="https://tailwindcss.com/">
+    <img 
+      src="https://img.shields.io/badge/Tailwind%20CSS-2.2.7+-blue.svg?style=flat&logo=tailwind-css" 
+      alt="Tailwind CSS version" 
+    />
+  </a>
 </div>
 <br />
 
@@ -80,6 +86,7 @@ This app will allow you to search for movies and tv shows. It uses [OMDb API](ht
 - [x] Search is made while typing.
 - [x] Has a debounce function to prevent too many requests.
 - [x] Use React Hot Toast to show notification messages.
+- [x] Images skeleton loading.
 
 ## Tech Stack
 
@@ -90,6 +97,7 @@ This app will allow you to search for movies and tv shows. It uses [OMDb API](ht
 - [Water.css](https://watercss.kognise.dev/)
 - [Just-Debounce-It](https://github.com/angus-c/just)
 - [React Hot Toast](https://react-hot-toast.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Getting Started
 
