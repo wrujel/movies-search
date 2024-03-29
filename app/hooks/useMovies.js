@@ -26,6 +26,13 @@ export function useMovies({ query, sort }) {
     }
   }, []);
 
+  // This function updates the year of the movie if it contains a range
+  movies.forEach((movie) => {
+    if (movie.year !== null && movie.year.includes("–")) {
+      movie.year = movie.year.split("–")[0];
+    }
+  });
+
   // sorts the movies by year if the sort flag is set
   const sortedMovies = useMemo(() => {
     return sort && movies?.length > 0
