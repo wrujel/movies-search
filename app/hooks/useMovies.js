@@ -3,7 +3,7 @@ import { searchMovies } from "../services/searchMovies";
 import toast from "react-hot-toast";
 
 export function useMovies({ query, sort }) {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
   const [loading, setLoading] = useState(false);
   const previousSearch = useRef(query);
 
@@ -27,11 +27,13 @@ export function useMovies({ query, sort }) {
   }, []);
 
   // This function updates the year of the movie if it contains a range
-  movies.forEach((movie) => {
-    if (movie.year !== null && movie.year.includes("–")) {
-      movie.year = movie.year.split("–")[0];
-    }
-  });
+  if (movies?.length > 0) {
+    movies.forEach((movie) => {
+      if (movie.year !== null && movie.year.includes("–")) {
+        movie.year = movie.year.split("–")[0];
+      }
+    });
+  }
 
   // sorts the movies by year if the sort flag is set
   const sortedMovies = useMemo(() => {

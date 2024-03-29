@@ -19,9 +19,12 @@ function NoMoviesFound () {
   )
 }
 
-export function Movies ({movies}) {
+export function Movies ({movies = []}) {
+  if (movies === null) {
+    return null;
+  }
+  
   const hasMovies = movies?.length > 0;
-
   return (
     hasMovies 
       ? <ListOfMovies movies={movies}/>
