@@ -21,6 +21,8 @@ export default function MovieModal({
   const focusTrapRef = useFocusTrap(Boolean(movie));
 
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect -- drives the loading /
+       detail lifecycle for an external data fetch (a documented valid use). */
     if (!movie) {
       setDetail(null);
       setError(null);
@@ -29,6 +31,7 @@ export default function MovieModal({
     const controller = new AbortController();
     setLoading(true);
     setError(null);
+    /* eslint-enable react-hooks/set-state-in-effect */
     getMovieDetail({ id: movie.id, signal: controller.signal })
       .then((d) => setDetail(d))
       .catch((err) => {

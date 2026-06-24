@@ -18,32 +18,32 @@ function read(key, fallback) {
  *   - cross-tab synchronisation via the `storage` event.
  */
 export function useLocalStorage(key, initialValue) {
-  // Capture the initial value once so effects can depend on `key` alone.
+  // Capture the initial value once so the storage handler can fall back to it
+  // without re-subscribing when the caller passes a fresh object each render.
   const initialRef = useRef(initialValue);
-  const [value, setValue] = useState(initialRef.current);
-  const valueRef = useRef(value);
-  valueRef.current = value;
+  const [value, setValue] = useState(initialValue);
 
-  // Hydrate from storage after mount (client only).
+  // Hydrate from storage after mount (client only). setState-in-effect is the
+  // intended pattern here — reading localStorage during render breaks SSR.
   useEffect(() => {
     const stored = read(key, undefined);
-    if (stored !== undefined) {
-      valueRef.current = stored;
-      setValue(stored);
-    }
+    if (stored === undefined) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setValue(stored);
   }, [key]);
 
   const set = useCallback(
     (updater) => {
-      const next =
-        typeof updater === "function" ? updater(valueRef.current) : updater;
-      valueRef.current = next;
-      setValue(next);
-      try {
-        window.localStorage.setItem(key, JSON.stringify(next));
-      } catch {
-        // ignore quota / private-mode errors
-      }
+      // Functional update gives us the latest value without a render-time ref.
+      setValue((prev) => {
+        const next = typeof updater === "function" ? updater(prev) : updater;
+        try {
+          window.localStorage.setItem(key, JSON.stringify(next));
+        } catch {
+          // ignore quota / private-mode errors
+        }
+        return next;
+      });
     },
     [key],
   );
@@ -52,9 +52,7 @@ export function useLocalStorage(key, initialValue) {
   useEffect(() => {
     const onStorage = (e) => {
       if (e.key !== key) return;
-      const stored = read(key, initialRef.current);
-      valueRef.current = stored;
-      setValue(stored);
+      setValue(read(key, initialRef.current));
     };
     window.addEventListener("storage", onStorage);
     return () => window.removeEventListener("storage", onStorage);

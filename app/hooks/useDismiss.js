@@ -11,7 +11,10 @@ import { useEffect, useRef } from "react";
 export function useDismiss(active, onDismiss, { escape = true } = {}) {
   const ref = useRef(null);
   const handlerRef = useRef(onDismiss);
-  handlerRef.current = onDismiss;
+  // Latest handler without re-binding the listeners below; written after commit.
+  useEffect(() => {
+    handlerRef.current = onDismiss;
+  }, [onDismiss]);
 
   useEffect(() => {
     if (!active) return;

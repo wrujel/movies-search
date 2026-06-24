@@ -44,8 +44,11 @@ export function useAutocomplete({
     if (!isValidQuery(query)) {
       fetchSuggestions.cancel?.();
       abortRef.current?.abort();
+      /* eslint-disable react-hooks/set-state-in-effect -- clearing stale async
+         suggestion state once the query is no longer valid (external sync). */
       setTitles([]);
       setLoading(false);
+      /* eslint-enable react-hooks/set-state-in-effect */
       return;
     }
     fetchSuggestions(query, type, year);
