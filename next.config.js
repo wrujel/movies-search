@@ -1,10 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    // Required on Next 13.3.x to enable the app/ directory. Removed in Phase 3
-    // when Next is upgraded to 14/15 (App Router is stable there).
-    appDir: true,
-  },
   images: {
     // `domains` is deprecated; remotePatterns is the supported allowlist.
     remotePatterns: [{ protocol: "https", hostname: "m.media-amazon.com" }],
