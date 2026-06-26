@@ -39,12 +39,13 @@
 <div align='center'>
   A cinematic movie discovery app built with Next.js 16 and React 19. Search the OMDB catalog through a server-side BFF that keeps your API key private, with autocomplete, favorites, infinite scroll, year/type filters, and a detail modal — all served from an optimized, cached image pipeline.
 
-[Demo](https://movies-search-wrujel.vercel.app) · [Report issue](/issues) · [Suggest something](/issues)
+[Demo](https://movies-search-five.vercel.app) · [Report issue](/issues) · [Suggest something](/issues)
 
 </div>
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
@@ -264,7 +265,7 @@ This project is licensed under the [MIT License](LICENSE.md).
 <!-- Status badges -->
 
 [demo]: https://img.shields.io/badge/🚀%20Live%20Demo-Click%20Here-blue?style=for-the-badge
-[demo-link]: https://movies-search-wrujel.vercel.app
+[demo-link]: https://movies-search-five.vercel.app
 [status]: https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fwrujel%2Fmonitor-repos%2Fmain%2Fdata%2Fmovies-search.json&style=for-the-badge
 [status-link]: https://github.com/wrujel/monitor-repos
 [deploy]: https://img.shields.io/github/deployments/wrujel/movies-search/production?style=for-the-badge&label=Deploy
